@@ -1,668 +1,261 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGANGAI - Ayo Jaga Sungai</title>
-    <style>
-        /* Palet Warna Alam Soft */
-        :root {
-            --soft-green: #d8f3dc;
-            --soft-blue: #caf0f8;
-            --soft-yellow: #fcf6bd;
-            --soft-brown: #e6ccb2;
-            --dark-green: #40916c;
-            --text-dark: #2d6a4f;
-            --white: #ffffff;
-        }
+// --- DATA DUMMY SUNGAI KOTOR DI INDONESIA ---
+const dataSungai = [
+    { 
+        nama: "Sungai Citarum", 
+        lokasi: "Jawa Barat", 
+        deskripsi: "Tercemar parah oleh limbah industri tekstil skala besar, bahan kimia beracun, dan limbah domestik.", 
+        kotor: "85%", 
+        img: "https://images.unsplash.com/photo-1611273426858-450d8ce88126?q=80&w=800&auto=format&fit=crop" // Menggunakan gambar dari versi sebelumnya
+    },
+    { 
+        nama: "Sungai Ciliwung", 
+        lokasi: "DKI Jakarta - Jawa Barat", 
+        deskripsi: "Mengalami penumpukan sampah plastik, limbah rumah tangga (BOD/COD tinggi), dan bakteri E. coli.", 
+        kotor: "80%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/6012291821511468546" 
+    },
+    { 
+        nama: "Sungai Brantas", 
+        lokasi: "Jawa Timur", 
+        deskripsi: "Menerima limbah pabrik kertas, pabrik gula, penyedap rasa (MSG), serta masalah masif sampah popok bayi.", 
+        kotor: "75%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/2844267453574275469" 
+    },
+    { 
+        nama: "Sungai Bengawan Solo", 
+        lokasi: "Jawa Tengah - Jawa Timur", 
+        deskripsi: "Tercemar limbah industri tekstil, limbah cair pabrik ciu/alkohol, dan kotoran ternak (terutama babi).", 
+        kotor: "78%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/15646468881183838952" 
+    },
+    { 
+        nama: "Sungai Cisadane", 
+        lokasi: "Banten - Jawa Barat", 
+        deskripsi: "Terdampak limbah cair industri di sekitar Tangerang dan tumpukan sampah padat.", 
+        kotor: "70%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/10207119477628082375" 
+    },
+    { 
+        nama: "Kali Surabaya", 
+        lokasi: "Jawa Timur", 
+        deskripsi: "Bagian hilir DAS Brantas yang menerima beban limbah industri berat dan rumah tangga dari kawasan metropolis.", 
+        kotor: "72%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/15773399517575552063" 
+    },
+    { 
+        nama: "Sungai Cileungsi", 
+        lokasi: "Jawa Barat", 
+        deskripsi: "Airnya sering berubah hitam pekat dan bau busuk menyengat akibat pembuangan limbah pabrik ilegal.", 
+        kotor: "82%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/17328249491977696012" 
+    },
+    { 
+        nama: "Kali Bekasi", 
+        lokasi: "Jawa Barat", 
+        deskripsi: "Sering tertutup busa tebal putih dari tingginya konsentrasi deterjen domestik dan limbah industri.", 
+        kotor: "77%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/10839364698362482899" 
+    },
+    { 
+        nama: "Sungai Ciujung", 
+        lokasi: "Banten", 
+        deskripsi: "Tercemar berat oleh limbah pabrik bubur kertas (pulp) dan kertas yang mengubah warna air menjadi gelap.", 
+        kotor: "75%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/14972350587058556574" 
+    },
+    { 
+        nama: "Kali Garang", 
+        lokasi: "Jawa Tengah", 
+        deskripsi: "Menerima beban polusi dari limbah domestik perkotaan dan industri skala kecil-menengah perkotaan.", 
+        kotor: "68%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/1215087732392703695" 
+    },
+    { 
+        nama: "Kali Pesanggrahan", 
+        lokasi: "DKI Jakarta - Jawa Barat", 
+        deskripsi: "Terdampak parah oleh sedimentasi, sampah rumah tangga, dan limbah permukiman padat.", 
+        kotor: "70%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/17243592266080892068" 
+    },
+    { 
+        nama: "Sungai Cikijing", 
+        lokasi: "Jawa Barat", 
+        deskripsi: "Anak sungai Citarum yang menerima aliran limbah pabrik tekstil yang sangat beracun dan pekat.", 
+        kotor: "88%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/2892666602067043166" 
+    },
+    { 
+        nama: "Sungai Musi", 
+        lokasi: "Sumatera Selatan", 
+        deskripsi: "Tercemar limbah pabrik pupuk, pengolahan karet, tumpahan batu bara, dan sanitasi rumah tangga.", 
+        kotor: "65%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/16576115931397174680" 
+    },
+    { 
+        nama: "Sungai Deli", 
+        lokasi: "Sumatera Utara", 
+        deskripsi: "Membelah Medan, tercemar kombinasi limbah pabrik, rumah potong hewan, dan sampah rumah tangga masif.", 
+        kotor: "73%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/7981306792027483081" 
+    },
+    { 
+        nama: "Sungai Siak", 
+        lokasi: "Riau", 
+        deskripsi: "Sungai terdalam yang tercemar oleh limbah pabrik kelapa sawit dan industri kertas.", 
+        kotor: "70%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/5899992503047740292" 
+    },
+    { 
+        nama: "Sungai Batanghari", 
+        lokasi: "Jambi", 
+        deskripsi: "Tercemar parah zat merkuri (air raksa) dari Penambangan Emas Tanpa Izin (PETI) di sepanjang alirannya.", 
+        kotor: "76%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/922845298987804559" 
+    },
+    { 
+        nama: "Sungai Kapuas", 
+        lokasi: "Kalimantan Barat", 
+        deskripsi: "Kualitas air turun drastis akibat limbah merkuri tambang emas ilegal dan limbah industri perkayuan.", 
+        kotor: "68%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/9144568617800479138" 
+    },
+    { 
+        nama: "Sungai Barito", 
+        lokasi: "Kalimantan Tengah - Selatan", 
+        deskripsi: "Terdampak oleh limbah buangan dari aktivitas tambang batu bara dan perkebunan kelapa sawit.", 
+        kotor: "65%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/5225042114406829908" 
+    },
+    { 
+        nama: "Sungai Mahakam", 
+        lokasi: "Kalimantan Timur", 
+        deskripsi: "Menerima limbah dari lalu lintas ponton batu bara, industri kayu, serta limbah permukiman Samarinda.", 
+        kotor: "66%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/4709606100327002377" 
+    },
+    { 
+        nama: "Sungai Kahayan", 
+        lokasi: "Kalimantan Tengah", 
+        deskripsi: "Ancaman utamanya adalah sedimen lumpur dan merkuri yang berasal dari tambang emas ilegal.", 
+        kotor: "64%", 
+        img: "http://googleusercontent.com/image_collection/image_retrieval/7732714630114291326" 
+    }
+];
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+const dataPahlawan = [
+    { nama: "Pandawara Group", desc: "Sekelompok pemuda asal Bandung yang viral karena aksi gotong royong membersihkan tumpukan sampah di sungai dan pantai.", sosmed: "TikTok: @pandawaragroup | IG: @pandawaragroup" },
+    { nama: "Bumantara", desc: "Komunitas pemuda peduli lingkungan yang berfokus pada pembersihan sungai dan edukasi pengelolaan sampah.", sosmed: "IG: @bumantarateam" },
+    { nama: "Jeremy Owen", desc: "Kreator konten yang rajin mengedukasi tentang lingkungan hidup dan turun tangan membersihkan sungai.", sosmed: "TikTok: @jerhemyowen | IG: @jerhemyowen" },
+    { nama: "Sungai Watch", desc: "Organisasi nirlaba yang memasang jaring penghalang sampah (barriers) di sungai-sungai Bali dan sekitarnya.", sosmed: "IG: @sungaiwatch" }
+];
 
-        body {
-            background-color: var(--soft-green);
-            color: var(--text-dark);
-        }
-
-        /* Header & Navbar */
-        header {
-            background-color: var(--white);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--dark-green);
-            text-decoration: none;
-        }
-
-        .auth-btn {
-            background-color: var(--soft-blue);
-            color: var(--text-dark);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .auth-btn:hover {
-            background-color: var(--soft-brown);
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background-color: var(--soft-yellow);
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            margin-bottom: 30px;
-        }
-
-        .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: var(--dark-green);
-        }
-
-        .hero p {
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto 20px;
-            line-height: 1.6;
-        }
-
-        /* Menu Buttons */
-        .menu-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 0 20px;
-            margin-bottom: 40px;
-        }
-
-        .menu-btn {
-            background-color: var(--white);
-            border: 2px solid var(--dark-green);
-            color: var(--dark-green);
-            padding: 15px 25px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1em;
-            transition: 0.3s;
-        }
-
-        .menu-btn:hover, .menu-btn.active {
-            background-color: var(--dark-green);
-            color: var(--white);
-        }
-
-        /* Content Sections */
-        .content-section {
-            display: none;
-            max-width: 900px;
-            margin: 0 auto 50px;
-            padding: 20px;
-            background-color: var(--white);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .content-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Cards for Rivers & Heroes */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background-color: var(--soft-blue);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            background-color: var(--soft-yellow);
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-        }
-
-        /* Forms */
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-
-        .submit-btn {
-            background-color: var(--dark-green);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-        }
-
-        /* Modal / Popup */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 550px;
-            position: relative;
-            margin: 40px auto;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--soft-brown);
-        }
-
-        .auth-tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .auth-tab.active {
-            background-color: var(--soft-brown);
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-        }
-
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
-
-        ul.tips-list {
-            list-style-type: disc;
-            margin-left: 20px;
-            line-height: 1.8;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header -->
-    <header>
-        <a href="#" class="logo">AGANGAI 🌱</a>
-        <button class="auth-btn" onclick="openAuthModal()">Akun (Masuk / Daftar)</button>
-    </header>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Selamat Datang di AGANGAI</h1>
-        <p>Ayo Jaga Sungai! Website ini berisi rekam jejak sungai-sungai yang tercatat mengalami pencemaran beserta persentase kotornya. Mari kita bersama-sama menjadi pahlawan untuk menjaga kebersihan urat nadi bumi kita.</p>
-        <strong>Mulai langkah kecilmu hari ini untuk air yang lebih bersih esok hari!</strong>
-    </div>
-
-    <!-- Main Navigation Menu -->
-    <div class="menu-container">
-        <button class="menu-btn active" onclick="showSection('sungai-kotor', this)">Daftar Sungai Kotor</button>
-        <button class="menu-btn" onclick="showSection('pahlawan-sungai', this)">Pahlawan Sungai</button>
-        <button class="menu-btn" onclick="showSection('cara-menjaga', this)">Cara Menjaga Sungai</button>
-        <button class="menu-btn" onclick="showSection('pengaduan', this)">Pengaduan Sungai Kotor</button>
-        <button class="menu-btn" onclick="showSection('sungai-bersih', this)">Sungai Yang Kubersihkan</button>
-    </div>
-
-    <!-- 1. Section Daftar Sungai Kotor -->
-    <div id="sungai-kotor" class="content-section active">
-        <h2>Data Sungai Tercemar di Indonesia</h2>
-        <p>Klik nama sungai untuk melihat detail lokasi, kondisi pencemaran, dan persentase kotornya.</p>
-        <div class="grid-container" id="grid-sungai">
-            <!-- Data di-render via JS -->
-        </div>
-    </div>
-
-    <!-- 2. Section Pahlawan Sungai -->
-    <div id="pahlawan-sungai" class="content-section">
-        <h2>Pahlawan Sungai Indonesia</h2>
-        <p>Inspirasi dari mereka yang sudah turun tangan langsung menjaga kebersihan sungai.</p>
-        <div class="grid-container" id="grid-pahlawan">
-            <!-- Data di-render via JS -->
-        </div>
-    </div>
-
-    <!-- 3. Section Cara Menjaga Sungai -->
-    <div id="cara-menjaga" class="content-section">
-        <h2>Cara Menjaga Kelestarian Sungai</h2>
-        <ul class="tips-list">
-            <li><strong>Jangan membuang sampah ke sungai:</strong> Buanglah sampah pada tempatnya dan pisahkan antara organik dan anorganik.</li>
-            <li><strong>Kurangi penggunaan plastik sekali pakai:</strong> Bawa botol minum dan tas belanja sendiri.</li>
-            <li><strong>Jangan membuang limbah rumah tangga/kimia:</strong> Pastikan minyak jelantah, cat, atau deterjen keras tidak langsung dibuang ke saluran air.</li>
-            <li><strong>Tanam pohon di bantaran sungai:</strong> Akar pohon membantu mencegah erosi dan menyaring polutan.</li>
-            <li><strong>Ikut serta komunitas peduli lingkungan:</strong> Terlibat dalam kegiatan bersih-bersih sungai di daerahmu.</li>
-        </ul>
-    </div>
-
-    <!-- 4. Section Pengaduan Sungai -->
-    <div id="pengaduan" class="content-section">
-        <h2>Form Pengaduan Sungai Kotor</h2>
-        <p>Laporkan sungai yang tercemar di sekitarmu agar dapat didata.</p>
-        <form onsubmit="submitPengaduan(event)">
-            <div class="form-group">
-                <label>Nama Sungai</label>
-                <input type="text" required placeholder="Contoh: Sungai Ciliwung">
+// --- FUNGSI RENDER DATA SUNGAI (di Grid Utama) ---
+function renderSungai() {
+    const grid = document.getElementById('grid-sungai');
+    grid.innerHTML = '';
+    dataSungai.forEach((sungai, index) => {
+        grid.innerHTML += `
+            <div class="card" onclick="showDetail('sungai', ${index})">
+                <h3>${sungai.nama}</h3>
+                <p>${sungai.lokasi}</p>
+                <p style="color: red; font-weight: bold; margin-top: 5px;">Tingkat Kotor: ${sungai.kotor}</p>
             </div>
-            <div class="form-group">
-                <label>Lokasi (Kota/Kabupaten)</label>
-                <input type="text" required placeholder="Contoh: Jakarta Selatan">
+        `;
+    });
+}
+
+// --- FUNGSI RENDER DATA PAHLAWAN ---
+function renderPahlawan() {
+    const grid = document.getElementById('grid-pahlawan');
+    grid.innerHTML = '';
+    dataPahlawan.forEach((pahlawan, index) => {
+        grid.innerHTML += `
+            <div class="card" onclick="showDetail('pahlawan', ${index})">
+                <h3>${pahlawan.nama}</h3>
+                <p>Klik untuk melihat kontribusi</p>
             </div>
-            <div class="form-group">
-                <label>Foto Sungai (Upload)</label>
-                <input type="file" accept="image/*" required>
-            </div>
-            <div class="form-group">
-                <label>Deskripsi Kondisi</label>
-                <textarea rows="4" required placeholder="Ceritakan seberapa parah kondisinya..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Kirim Laporan</button>
-        </form>
-    </div>
+        `;
+    });
+}
 
-    <!-- 5. Section Sungai Yang Sudah Dibersihkan -->
-    <div id="sungai-bersih" class="content-section">
-        <h2>Lapor Sungai Yang Telah Kamu Rawat</h2>
-        <p>Catat kontribusimu di sini dan jadilah bagian dari perubahan!</p>
-        <form onsubmit="submitDibersihkan(event)">
-            <div class="form-group">
-                <label>Nama Sungai Yang Dibersihkan</label>
-                <input type="text" required placeholder="Contoh: Sungai Code">
-            </div>
-            <div class="form-group">
-                <label>Lokasi</label>
-                <input type="text" required placeholder="Contoh: Yogyakarta">
-            </div>
-            <div class="form-group">
-                <label>Aksi yang dilakukan</label>
-                <textarea rows="3" required placeholder="Contoh: Mengangkat 10 kantong sampah plastik..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Kirim Laporan Aksi</button>
-        </form>
-    </div>
+// --- FUNGSI NAVIGASI & MODAL ---
+function showSection(sectionId, btnElement) {
+    document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+    
+    document.getElementById(sectionId).classList.add('active');
+    btnElement.classList.add('active');
+}
 
-    <!-- Modal Login/Daftar -->
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('authModal')">&times;</span>
-            <div class="auth-tabs">
-                <div class="auth-tab active" onclick="switchAuth('login')">Masuk</div>
-                <div class="auth-tab" onclick="switchAuth('register')">Daftar</div>
-            </div>
-            
-            <form id="loginForm" class="auth-form active" onsubmit="handleAuth(event, 'Masuk')">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" required>
-                </div>
-                <button type="submit" class="submit-btn" style="width: 100%">Masuk</button>
-            </form>
+function openAuthModal() {
+    document.getElementById('authModal').style.display = 'flex';
+}
 
-            <form id="registerForm" class="auth-form" onsubmit="handleAuth(event, 'Daftar')">
-                <div class="form-group">
-                    <label>Nama Lengkap</label>
-                    <input type="text" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" required>
-                </div>
-                <button type="submit" class="submit-btn" style="width: 100%">Daftar Sekarang</button>
-            </form>
-        </div>
-    </div>
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
 
-    <!-- Modal Detail Item -->
-    <div id="detailModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('detailModal')">&times;</span>
-            <div id="detailContent">
-                <!-- Konten detail di-inject via JS -->
-            </div>
-        </div>
-    </div>
+function switchAuth(type) {
+    document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
 
-    <script>
-        // --- DATA DUMMY SUNGAI KOTOR DI INDONESIA ---
-        const dataSungai = [
-            { 
-                nama: "Sungai Citarum", 
-                lokasi: "Jawa Barat", 
-                deskripsi: "Tercemar parah oleh limbah industri tekstil skala besar, bahan kimia beracun, dan limbah domestik.", 
-                kotor: "85%", 
-                img: "https://images.unsplash.com/photo-1611273426858-450d8ce88126?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Ciliwung", 
-                lokasi: "DKI Jakarta - Jawa Barat", 
-                deskripsi: "Mengalami penumpukan sampah plastik, limbah rumah tangga (BOD/COD tinggi), dan bakteri E. coli.", 
-                kotor: "80%", 
-                img: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Brantas", 
-                lokasi: "Jawa Timur", 
-                deskripsi: "Menerima limbah pabrik kertas, pabrik gula, penyedap rasa (MSG), serta masalah masif sampah popok bayi.", 
-                kotor: "75%", 
-                img: "https://images.unsplash.com/photo-1621459582236-4148b30129f1?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Bengawan Solo", 
-                lokasi: "Jawa Tengah - Jawa Timur", 
-                deskripsi: "Tercemar limbah industri tekstil, limbah cair pabrik ciu/alkohol, dan kotoran ternak (terutama babi).", 
-                kotor: "78%", 
-                img: "https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Cisadane", 
-                lokasi: "Banten - Jawa Barat", 
-                deskripsi: "Terdampak limbah cair industri di sekitar Tangerang dan tumpukan sampah padat.", 
-                kotor: "70%", 
-                img: "https://images.unsplash.com/photo-1582458999332-6a56cba4c173?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Kali Surabaya", 
-                lokasi: "Jawa Timur", 
-                deskripsi: "Bagian hilir DAS Brantas yang menerima beban limbah industri berat dan rumah tangga dari kawasan metropolis.", 
-                kotor: "72%", 
-                img: "https://images.unsplash.com/photo-1580133318284-f3c5f5fb4eb6?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Cileungsi", 
-                lokasi: "Jawa Barat", 
-                deskripsi: "Airnya sering berubah hitam pekat dan bau busuk menyengat akibat pembuangan limbah pabrik ilegal.", 
-                kotor: "82%", 
-                img: "https://images.unsplash.com/photo-1600329971842-83b51688cd8b?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Kali Bekasi", 
-                lokasi: "Jawa Barat", 
-                deskripsi: "Sering tertutup busa tebal putih dari tingginya konsentrasi deterjen domestik dan limbah industri.", 
-                kotor: "77%", 
-                img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Ciujung", 
-                lokasi: "Banten", 
-                deskripsi: "Tercemar berat oleh limbah pabrik bubur kertas (pulp) dan kertas yang mengubah warna air menjadi gelap.", 
-                kotor: "75%", 
-                img: "https://images.unsplash.com/photo-1533568024501-de27daee2ec5?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Kali Garang", 
-                lokasi: "Jawa Tengah", 
-                deskripsi: "Menerima beban polusi dari limbah domestik perkotaan dan industri skala kecil-menengah.", 
-                kotor: "68%", 
-                img: "https://images.unsplash.com/photo-1594892461870-13f508a8e13d?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Kali Pesanggrahan", 
-                lokasi: "DKI Jakarta - Jawa Barat", 
-                deskripsi: "Terdampak parah oleh sedimentasi, sampah rumah tangga, dan limbah permukiman padat.", 
-                kotor: "70%", 
-                img: "https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Cikijing", 
-                lokasi: "Jawa Barat", 
-                deskripsi: "Anak sungai Citarum yang menerima aliran limbah pabrik tekstil yang sangat beracun dan pekat.", 
-                kotor: "88%", 
-                img: "https://images.unsplash.com/photo-1620023616892-e4b2d398d9ba?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Musi", 
-                lokasi: "Sumatera Selatan", 
-                deskripsi: "Tercemar limbah pabrik pupuk, pengolahan karet, tumpahan batu bara, dan sanitasi rumah tangga.", 
-                kotor: "65%", 
-                img: "https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Deli", 
-                lokasi: "Sumatera Utara", 
-                deskripsi: "Membelah Medan, tercemar kombinasi limbah pabrik, rumah potong hewan, dan sampah rumah tangga masif.", 
-                kotor: "73%", 
-                img: "https://images.unsplash.com/photo-1595861756262-d3b5c3ff2bb7?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Siak", 
-                lokasi: "Riau", 
-                deskripsi: "Sungai terdalam yang tercemar oleh limbah pabrik kelapa sawit dan industri kertas.", 
-                kotor: "70%", 
-                img: "https://images.unsplash.com/photo-1544485507-6ba713ffb783?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Batanghari", 
-                lokasi: "Jambi", 
-                deskripsi: "Tercemar parah zat merkuri (air raksa) dari Penambangan Emas Tanpa Izin (PETI) di sepanjang alirannya.", 
-                kotor: "76%", 
-                img: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Kapuas", 
-                lokasi: "Kalimantan Barat", 
-                deskripsi: "Kualitas air turun drastis akibat limbah merkuri tambang emas ilegal dan limbah industri perkayuan.", 
-                kotor: "68%", 
-                img: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Barito", 
-                lokasi: "Kalimantan Tengah - Selatan", 
-                deskripsi: "Terdampak oleh limbah buangan dari aktivitas tambang batu bara dan perkebunan kelapa sawit.", 
-                kotor: "65%", 
-                img: "https://images.unsplash.com/photo-1551000688-21d3f9f30be6?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Mahakam", 
-                lokasi: "Kalimantan Timur", 
-                deskripsi: "Menerima limbah dari lalu lintas ponton batu bara, industri kayu, serta limbah permukiman Samarinda.", 
-                kotor: "66%", 
-                img: "https://images.unsplash.com/photo-1513238692736-23eeebbb8140?q=80&w=800&auto=format&fit=crop" 
-            },
-            { 
-                nama: "Sungai Kahayan", 
-                lokasi: "Kalimantan Tengah", 
-                deskripsi: "Ancaman utamanya adalah sedimen lumpur dan merkuri yang berasal dari tambang emas ilegal.", 
-                kotor: "64%", 
-                img: "https://images.unsplash.com/photo-1585250499641-f4c0ab6a25e1?q=80&w=800&auto=format&fit=crop" 
-            }
-        ];
+    if(type === 'login') {
+        document.querySelectorAll('.auth-tab')[0].classList.add('active');
+        document.getElementById('loginForm').classList.add('active');
+    } else {
+        document.querySelectorAll('.auth-tab')[1].classList.add('active');
+        document.getElementById('registerForm').classList.add('active');
+    }
+}
 
-        const dataPahlawan = [
-            { nama: "Pandawara Group", desc: "Sekelompok pemuda asal Bandung yang viral karena aksi gotong royong membersihkan tumpukan sampah di sungai dan pantai.", sosmed: "TikTok: @pandawaragroup | IG: @pandawaragroup" },
-            { nama: "Bumantara", desc: "Komunitas pemuda peduli lingkungan yang berfokus pada pembersihan sungai dan edukasi pengelolaan sampah.", sosmed: "IG: @bumantarateam" },
-            { nama: "Jeremy Owen", desc: "Kreator konten yang rajin mengedukasi tentang lingkungan hidup dan turun tangan membersihkan sungai.", sosmed: "TikTok: @jerhemyowen | IG: @jerhemyowen" },
-            { nama: "Sungai Watch", desc: "Organisasi nirlaba yang memasang jaring penghalang sampah (barriers) di sungai-sungai Bali dan sekitarnya.", sosmed: "IG: @sungaiwatch" }
-        ];
+// --- FUNGSI SHOW DETAIL MODAL ---
+function showDetail(type, index) {
+    const modal = document.getElementById('detailModal');
+    const content = document.getElementById('detailContent');
+    
+    if(type === 'sungai') {
+        const data = dataSungai[index];
+        content.innerHTML = `
+            <h2>${data.nama}</h2>
+            <img src="${data.img}" alt="Foto ${data.nama}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <p><strong>Lokasi:</strong> ${data.lokasi}</p>
+            <p><strong>Kondisi Pencemaran:</strong> ${data.deskripsi}</p>
+            <p><strong>Persentase Kotor:</strong> <span style="color:red; font-weight:bold; font-size: 1.2em;">${data.kotor}</span></p>
+        `;
+    } else if(type === 'pahlawan') {
+        const data = dataPahlawan[index];
+        content.innerHTML = `
+            <h2>${data.nama}</h2>
+            <br>
+            <p><strong>Deskripsi & Kontribusi:</strong><br> ${data.desc}</p>
+            <br>
+            <p><strong>Sosial Media:</strong><br> ${data.sosmed}</p>
+        `;
+    }
+    modal.style.display = 'flex';
+}
 
-        // --- FUNGSI RENDER DATA ---
-        function renderSungai() {
-            const grid = document.getElementById('grid-sungai');
-            grid.innerHTML = '';
-            dataSungai.forEach((sungai, index) => {
-                grid.innerHTML += `
-                    <div class="card" onclick="showDetail('sungai', ${index})">
-                        <h3>${sungai.nama}</h3>
-                        <p>${sungai.lokasi}</p>
-                        <p style="color: red; font-weight: bold; margin-top: 5px;">Tingkat Kotor: ${sungai.kotor}</p>
-                    </div>
-                `;
-            });
-        }
+// --- FUNGSI FORM (Pengaduan, dll.) ---
+function handleAuth(e, action) {
+    e.preventDefault();
+    alert(`Berhasil ${action}! Selamat datang di AGANGAI.`);
+    closeModal('authModal');
+}
 
-        function renderPahlawan() {
-            const grid = document.getElementById('grid-pahlawan');
-            grid.innerHTML = '';
-            dataPahlawan.forEach((pahlawan, index) => {
-                grid.innerHTML += `
-                    <div class="card" onclick="showDetail('pahlawan', ${index})">
-                        <h3>${pahlawan.nama}</h3>
-                        <p>Klik untuk melihat kontribusi</p>
-                    </div>
-                `;
-            });
-        }
+function submitPengaduan(e) {
+    e.preventDefault();
+    alert("Terima kasih! Laporan pengaduan sungai kotor telah kami catat dan akan segera ditinjau.");
+    e.target.reset();
+}
 
-        // --- FUNGSI NAVIGASI & MODAL ---
-        function showSection(sectionId, btnElement) {
-            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(sectionId).classList.add('active');
-            btnElement.classList.add('active');
-        }
+function submitDibersihkan(e) {
+    e.preventDefault();
+    alert("🎉 SELAMAT! 🎉\n\nTerima kasih banyak atas usaha luar biasamu merawat sungai kita! Langkah kecilmu ini sangat berarti untuk bumi. Tetap semangat jadi Pahlawan Sungai!");
+    e.target.reset();
+}
 
-        function openAuthModal() {
-            document.getElementById('authModal').style.display = 'flex';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        function switchAuth(type) {
-            document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
-
-            if(type === 'login') {
-                document.querySelectorAll('.auth-tab')[0].classList.add('active');
-                document.getElementById('loginForm').classList.add('active');
-            } else {
-                document.querySelectorAll('.auth-tab')[1].classList.add('active');
-                document.getElementById('registerForm').classList.add('active');
-            }
-        }
-
-        function showDetail(type, index) {
-            const modal = document.getElementById('detailModal');
-            const content = document.getElementById('detailContent');
-            
-            if(type === 'sungai') {
-                const data = dataSungai[index];
-                content.innerHTML = `
-                    <h2>${data.nama}</h2>
-                    <img src="${data.img}" alt="Foto ${data.nama}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                    <p><strong>Lokasi:</strong> ${data.lokasi}</p>
-                    <p><strong>Kondisi Pencemaran:</strong> ${data.deskripsi}</p>
-                    <p><strong>Persentase Kotor:</strong> <span style="color:red; font-weight:bold; font-size: 1.2em;">${data.kotor}</span></p>
-                `;
-            } else if(type === 'pahlawan') {
-                const data = dataPahlawan[index];
-                content.innerHTML = `
-                    <h2>${data.nama}</h2>
-                    <br>
-                    <p><strong>Deskripsi & Kontribusi:</strong><br> ${data.desc}</p>
-                    <br>
-                    <p><strong>Sosial Media:</strong><br> ${data.sosmed}</p>
-                `;
-            }
-            modal.style.display = 'flex';
-        }
-
-        // --- FUNGSI FORM ---
-        function handleAuth(e, action) {
-            e.preventDefault();
-            alert(`Berhasil ${action}! Selamat datang di AGANGAI.`);
-            closeModal('authModal');
-        }
-
-        function submitPengaduan(e) {
-            e.preventDefault();
-            alert("Terima kasih! Laporan pengaduan sungai kotor telah kami catat dan akan segera ditinjau.");
-            e.target.reset();
-        }
-
-        function submitDibersihkan(e) {
-            e.preventDefault();
-            alert("🎉 SELAMAT! 🎉\n\nTerima kasih banyak atas usaha luar biasamu merawat sungai kita! Langkah kecilmu ini sangat berarti untuk bumi. Tetap semangat jadi Pahlawan Sungai!");
-            e.target.reset();
-        }
-
-        // Inisialisasi awal
-        window.onload = () => {
-            renderSungai();
-            renderPahlawan();
-        }
-    </script>
-</body>
-</html>
+// Inisialisasi awal saat halaman dimuat
+window.onload = () => {
+    renderSungai();
+    renderPahlawan();
+}
