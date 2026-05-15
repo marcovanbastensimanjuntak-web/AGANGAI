@@ -1,144 +1,165 @@
-// --- DATA DUMMY SUNGAI KOTOR DI INDONESIA (Lengkap dengan Gambar Valid) ---
+// --- DATA AGANGAI (Ayo Jaga Sungai) ---
+// Berisi data lengkap 20 sungai paling tercemar di Indonesia
 const dataSungai = [
     { 
         nama: "Sungai Citarum", 
-        lokasi: "Jawa Barat", 
-        deskripsi: "Tercemar parah oleh limbah industri tekstil skala besar, bahan kimia beracun, dan limbah domestik.", 
-        kotor: "85%", 
-        img: "https://images.unsplash.com/photo-1611273426858-450d8ce88126?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jawa Barat (Gunung Wayang hingga Laut Jawa)", 
+        deskripsi: "Menerima buangan limbah dari ratusan pabrik tekstil.", 
+        kotor: "90-100% (Sangat Ekstrem)", 
+        durasi: "Sejak era industrialisasi masif awal tahun 1980-an.",
+        img: "https://images.unsplash.com/photo-1611273426858-450d8ce88126?q=80&w=800&auto=format&fit=crop" // Illustrasi limbah tekstil
     },
     { 
         nama: "Sungai Ciliwung", 
-        lokasi: "DKI Jakarta - Jawa Barat", 
-        deskripsi: "Mengalami penumpukan sampah plastik, limbah rumah tangga (BOD/COD tinggi), dan bakteri E. coli.", 
-        kotor: "80%", 
-        img: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "DKI Jakarta - Jawa Barat (Kab. Bogor hingga Teluk Jakarta)", 
+        deskripsi: "Tercemar berat oleh sampah domestik dan bakteri E. coli.", 
+        kotor: "Lebih dari 70% aliran", 
+        durasi: "Sejak membludaknya urbanisasi pada tahun 1970-an.",
+        img: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?q=80&w=800&auto=format&fit=crop" // Illustrasi sampah domestik perkotaan
     },
     { 
         nama: "Sungai Brantas", 
-        lokasi: "Jawa Timur", 
-        deskripsi: "Menerima limbah pabrik kertas, pabrik gula, penyedap rasa (MSG), serta masalah masif sampah popok bayi.", 
-        kotor: "75%", 
-        img: "https://images.unsplash.com/photo-1621459582236-4148b30129f1?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jawa Timur (Gunung Berapi hingga Selat Madura)", 
+        deskripsi: "Tercemar limbah industri pabrik, limbah rumah tangga, dan sampah popok.", 
+        kotor: "60-80% di bagian hilir", 
+        durasi: "Sejak pertumbuhan industri dan populasi awal 1990-an.",
+        img: "https://images.unsplash.com/photo-1621459582236-4148b30129f1?q=80&w=800&auto=format&fit=crop" // Illustrasi pencemaran gabungan
     },
     { 
         nama: "Sungai Bengawan Solo", 
-        lokasi: "Jawa Tengah - Jawa Timur", 
-        deskripsi: "Tercemar limbah industri tekstil, limbah cair pabrik ciu/alkohol, dan kotoran ternak (terutama babi).", 
-        kotor: "78%", 
-        img: "https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jawa Tengah - Jawa Timur (hingga bermuara di Gresik)", 
+        deskripsi: "Tercemar pekat oleh limbah industri tekstil dan pabrik alkohol/ciu, terutama saat musim kemarau.", 
+        kotor: "Mendekati 90% (saat kemarau)", 
+        durasi: "Sejak maraknya industri di bantaran sungai akhir 1980-an.",
+        img: "https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?q=80&w=800&auto=format&fit=crop" // Illustrasi limbah industri gelap
     },
     { 
         nama: "Sungai Cisadane", 
-        lokasi: "Banten - Jawa Barat", 
-        deskripsi: "Terdampak limbah cair industri di sekitar Tangerang dan tumpukan sampah padat.", 
-        kotor: "70%", 
-        img: "https://images.unsplash.com/photo-1582458999332-6a56cba4c173?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Banten - Jawa Barat (Gunung Salak hingga Laut Jawa)", 
+        deskripsi: "Dipenuhi dengan limbah domestik dan industri pabrik di area Tangerang.", 
+        kotor: "Sekitar 70-80% di wilayah Tangerang", 
+        durasi: "Memburuk seiring pesatnya pabrik di Tangerang era 1990-an.",
+        img: "https://images.unsplash.com/photo-1582458999332-6a56cba4c173?q=80&w=800&auto=format&fit=crop" // Illustrasi industri padat
     },
     { 
         nama: "Kali Surabaya", 
-        lokasi: "Jawa Timur", 
-        deskripsi: "Bagian hilir DAS Brantas yang menerima beban limbah industri berat dan rumah tangga dari kawasan metropolis.", 
-        kotor: "72%", 
-        img: "https://images.unsplash.com/photo-1580133318284-f3c5f5fb4eb6?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jawa Timur (Anak cabang Brantas melintasi metropolis Surabaya)", 
+        deskripsi: "Membawa beban polutan berat secara konstan dari ratusan pabrik dan jutaan penduduk.", 
+        kotor: "Hampir 100% secara konstan", 
+        durasi: "Memburuk sejak pertumbuhan industri perkotaan awal 1980-an.",
+        img: "https://images.unsplash.com/photo-1580133318284-f3c5f5fb4eb6?q=80&w=800&auto=format&fit=crop" // Illustrasi limbah perkotaan metropolis
     },
     { 
         nama: "Sungai Cileungsi", 
-        lokasi: "Jawa Barat", 
-        deskripsi: "Airnya sering berubah hitam pekat dan bau busuk menyengat akibat pembuangan limbah pabrik ilegal.", 
-        kotor: "82%", 
-        img: "https://images.unsplash.com/photo-1600329971842-83b51688cd8b?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jawa Barat (Perbatasan Kabupaten Bogor)", 
+        deskripsi: "Sering berubah warna hitam pekat dan berbau busuk akibat buangan limbah industri ilegal.", 
+        kotor: "Lebih dari 80% (terutama saat kemarau)", 
+        durasi: "Berlangsung selama lebih dari dua dekade, sejak awal tahun 2000-an.",
+        img: "https://images.unsplash.com/photo-1600329971842-83b51688cd8b?q=80&w=800&auto=format&fit=crop" // Illustrasi air hitam
     },
     { 
         nama: "Kali Bekasi", 
-        lokasi: "Jawa Barat", 
-        deskripsi: "Sering tertutup busa tebal putih dari tingginya konsentrasi deterjen domestik dan limbah industri.", 
-        kotor: "77%", 
-        img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jawa Barat (Kelanjutan Cileungsi, melintasi Kota/Kab. Bekasi)", 
+        deskripsi: "Muncul busa tebal putih, air hitam, dan lumpur kimia saat debit air rendah.", 
+        kotor: "Nyaris total (di atas 90%)", 
+        durasi: "Sejak pertengahan 1990-an seiring meledaknya pabrik di kawasan penyangga ibu kota.",
+        img: "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?q=80&w=800&auto=format&fit=crop" // Illustrasi busa deterjen industri
     },
     { 
         nama: "Sungai Ciujung", 
-        lokasi: "Banten", 
-        deskripsi: "Tercemar berat oleh limbah pabrik bubur kertas (pulp) dan kertas yang mengubah warna air menjadi gelap.", 
-        kotor: "75%", 
-        img: "https://images.unsplash.com/photo-1533568024501-de27daee2ec5?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Banten (Mengalir membelah provinsi)", 
+        deskripsi: "Air sering menghitam layaknya tinta akibat limbah dari pabrik bubur kertas (pulp) dan kertas besar.", 
+        kotor: "Sekitar 70% area aliran utama", 
+        durasi: "Merusak ekosistem dan merugikan nelayan tambak sejak akhir 1990-an.",
+        img: "https://images.unsplash.com/photo-1533568024501-de27daee2ec5?q=80&w=800&auto=format&fit=crop" // Illustrasi pencemaran pulp paper
     },
     { 
-        nama: "Kali Garang", 
-        lokasi: "Jawa Tengah", 
-        deskripsi: "Menerima beban polusi dari limbah domestik perkotaan dan industri skala kecil-menengah perkotaan.", 
-        kotor: "68%", 
-        img: "https://images.unsplash.com/photo-1594892461870-13f508a8e13d?q=80&w=800&auto=format&fit=crop" 
+        nama: "Kali Garang (Kanal Banjir Barat)", 
+        lokasi: "Jawa Tengah (Kota Semarang)", 
+        deskripsi: "Pencemaran domestik dan industri sedang hingga berat karena kurangnya sanitasi perkotaan.", 
+        kotor: "Mencapai 60% pada aliran hilir", 
+        durasi: "Dirasakan seiring bertambahnya populasi pendatang sejak era 1980-an.",
+        img: "https://images.unsplash.com/photo-1594892461870-13f508a8e13d?q=80&w=800&auto=format&fit=crop" // Illustrasi sanitasi perkotaan kurang
     },
     { 
         nama: "Kali Pesanggrahan", 
-        lokasi: "DKI Jakarta - Jawa Barat", 
-        deskripsi: "Terdampak parah oleh sedimentasi, sampah rumah tangga, dan limbah permukiman padat.", 
-        kotor: "70%", 
-        img: "https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jawa Barat - DKI Jakarta (Perbatasan)", 
+        deskripsi: "Didominasi sampah visual dan sedimentasi parah akibat pergeseran fungsi bantaran menjadi permukiman.", 
+        kotor: "Lebih dari 75% total panjang sungai", 
+        durasi: "Menjadi masalah lingkungan kronis sejak tahun 1980-an.",
+        img: "https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?q=80&w=800&auto=format&fit=crop" // Illustrasi sedimentasi trash
     },
     { 
         nama: "Sungai Cikijing", 
-        lokasi: "Jawa Barat", 
-        deskripsi: "Anak sungai Citarum yang menerima aliran limbah pabrik tekstil yang sangat beracun dan pekat.", 
-        kotor: "88%", 
-        img: "https://images.unsplash.com/photo-1620023616892-e4b2d398d9ba?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jawa Barat (Anak Citarum, kawasan industri Rancaekek)", 
+        deskripsi: "Saluran utama pembuangan limbah industri tekstil, berubah warna menjadi kehitaman atau kemerahan.", 
+        kotor: "Hampir 100% secara konsisten", 
+        durasi: "Sejak berdirinya kawasan industri pada tahun 1990-an.",
+        img: "https://images.unsplash.com/photo-1620023616892-e4b2d398d9ba?q=80&w=800&auto=format&fit=crop" // Illustrasi air berwarna industri
     },
     { 
         nama: "Sungai Musi", 
-        lokasi: "Sumatera Selatan", 
-        deskripsi: "Tercemar limbah pabrik pupuk, pengolahan karet, tumpahan batu bara, dan sanitasi rumah tangga.", 
-        kotor: "65%", 
-        img: "https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Sumatera Selatan (Palembang)", 
+        deskripsi: "Tercemar di zona pabrik pupuk, pengolahan karet, serta lintasan tongkang batu bara.", 
+        kotor: "Sekitar 60% wilayah pinggiran tercemar sedang hingga berat", 
+        durasi: "Penumpukan polutan industri dan domestik sudah terjadi sejak tahun 1980-an.",
+        img: "https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=800&auto=format&fit=crop" // Illustrasi lalu lintas tongkang batubara
     },
     { 
         nama: "Sungai Deli", 
-        lokasi: "Sumatera Utara", 
-        deskripsi: "Membelah Medan, tercemar kombinasi limbah pabrik, rumah potong hewan, dan sampah rumah tangga masif.", 
-        kotor: "73%", 
-        img: "https://images.unsplash.com/photo-1595861756262-d3b5c3ff2bb7?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Sumatera Utara (Kota Medan)", 
+        deskripsi: "Menerima seluruh beban buangan domestik dan pabrik dari laju urbanisasi.", 
+        kotor: "Setidaknya 80% masuk kategori tercemar berat", 
+        durasi: "Kualitas anjlok jauh di bawah baku mutu sejak ekspansi kota pertengahan 1970-an.",
+        img: "https://images.unsplash.com/photo-1595861756262-d3b5c3ff2bb7?q=80&w=800&auto=format&fit=crop" // Illustrasi urbanisasi Medan
     },
     { 
         nama: "Sungai Siak", 
-        lokasi: "Riau", 
-        deskripsi: "Sungai terdalam yang tercemar oleh limbah pabrik kelapa sawit dan industri kertas.", 
-        kotor: "70%", 
-        img: "https://images.unsplash.com/photo-1544485507-6ba713ffb783?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Riau (Jalur sungai terdalam historis)", 
+        deskripsi: "Tercemar parah oleh akumulasi limbah industri pabrik kertas raksasa, kelapa sawit, dan cemaran minyak bumi.", 
+        kotor: "Sekitar 70% area aliran utama", 
+        durasi: "Rusak sejak pembukaan pabrik-pabrik di era 1980-an.",
+        img: "https://images.unsplash.com/photo-1544485507-6ba713ffb783?q=80&w=800&auto=format&fit=crop" // Illustrasi pencemaran sawit paper
     },
     { 
         nama: "Sungai Batanghari", 
-        lokasi: "Jambi", 
-        deskripsi: "Tercemar parah zat merkuri (air raksa) dari Penambangan Emas Tanpa Izin (PETI) di sepanjang alirannya.", 
-        kotor: "76%", 
-        img: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Jambi (Mengalir membelah provinsi)", 
+        deskripsi: "Pencemaran zat merkuri membunuh biota air, air berubah kuning kecokelatan kotor.", 
+        kotor: "Lebih dari 60% tercemar sedimen tinggi dan merkuri", 
+        durasi: "Sejak meledaknya aktivitas Penambangan Emas Tanpa Izin (PETI) awal tahun 2000-an.",
+        img: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=800&auto=format&fit=crop" // Illustrasi sedimentasi merkuri PETI
     },
     { 
         nama: "Sungai Kapuas", 
-        lokasi: "Kalimantan Barat", 
-        deskripsi: "Kualitas air turun drastis akibat limbah merkuri tambang emas ilegal dan limbah industri perkayuan.", 
-        kotor: "68%", 
-        img: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Kalimantan Barat (Sungai terpanjang Indonesia)", 
+        deskripsi: "Tercemar logam berat merkuri serta limbah perkayuan, terutama di hilir dan sentra tambang.", 
+        kotor: "Diperkirakan 50-70% titik pantau", 
+        durasi: "Mulai tercatat semenjak era penebangan hutan (logging) dan PETI tahun 1980-an hingga 1990-an.",
+        img: "https://images.unsplash.com/photo-1605600659908-0ef719419d41?q=80&w=800&auto=format&fit=crop" // Illustrasi merkuri perkayuan
     },
     { 
         nama: "Sungai Barito", 
         lokasi: "Kalimantan Tengah - Selatan", 
-        deskripsi: "Terdampak oleh limbah buangan dari aktivitas tambang batu bara dan perkebunan kelapa sawit.", 
-        kotor: "65%", 
-        img: "https://images.unsplash.com/photo-1551000688-21d3f9f30be6?q=80&w=800&auto=format&fit=crop" 
+        deskripsi: "Terdampak tumpahan lalu lintas tongkang batu bara dan limbah agrokimia perkebunan kelapa sawit.", 
+        kotor: "Sekitar 60-70% terdampak", 
+        durasi: "Berawal sejalan pembukaan lahan dan tambang eksploitatif semenjak akhir tahun 1990-an.",
+        img: "https://images.unsplash.com/photo-1551000688-21d3f9f30be6?q=80&w=800&auto=format&fit=crop" // Illustrasi batubara sawit Barito
     },
     { 
         nama: "Sungai Mahakam", 
-        lokasi: "Kalimantan Timur", 
-        deskripsi: "Menerima limbah dari lalu lintas ponton batu bara, industri kayu, serta limbah permukiman Samarinda.", 
-        kotor: "66%", 
-        img: "https://images.unsplash.com/photo-1513238692736-23eeebbb8140?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Kalimantan Timur (Samarinda)", 
+        deskripsi: "Limbah tumpahan ponton batu bara, industri perkayuan, dan pemukiman terapung padat.", 
+        kotor: "Diperkirakan lebih dari 60% tercemar", 
+        durasi: "Anjlok tajam semenjak era pesatnya tambang batu bara lokal di akhir 1980-an.",
+        img: "https://images.unsplash.com/photo-1513238692736-23eeebbb8140?q=80&w=800&auto=format&fit=crop" // Illustrasi Mahakam coal logs
     },
     { 
         nama: "Sungai Kahayan", 
-        lokasi: "Kalimantan Tengah", 
-        deskripsi: "Ancaman utamanya adalah sedimen lumpur dan merkuri yang berasal dari tambang emas ilegal.", 
-        kotor: "64%", 
-        img: "https://images.unsplash.com/photo-1585250499641-f4c0ab6a25e1?q=80&w=800&auto=format&fit=crop" 
+        lokasi: "Kalimantan Tengah (Kota Palangka Raya)", 
+        deskripsi: "Tercemar sedimentasi lumpur menyebabkan pendangkalan dan dicemari merkuri berbahaya.", 
+        kotor: "Diperkirakan lebih dari 60% tercemar", 
+        durasi: "Dimulai secara masif pada awal 2000-an karena maraknya pertambangan emas pesisir.",
+        img: "https://images.unsplash.com/photo-1585250499641-f4c0ab6a25e1?q=80&w=800&auto=format&fit=crop" // Illustrasi merkuri lumpur Kahayan
     }
 ];
 
@@ -149,7 +170,7 @@ const dataPahlawan = [
     { nama: "Sungai Watch", desc: "Organisasi nirlaba yang memasang jaring penghalang sampah (barriers) di sungai-sungai Bali dan sekitarnya.", sosmed: "IG: @sungaiwatch" }
 ];
 
-// --- FUNGSI RENDER DATA SUNGAI (di Grid Utama) ---
+// --- FUNGSI RENDER DATA ---
 function renderSungai() {
     const grid = document.getElementById('grid-sungai');
     grid.innerHTML = '';
@@ -157,14 +178,12 @@ function renderSungai() {
         grid.innerHTML += `
             <div class="card" onclick="showDetail('sungai', ${index})">
                 <h3>${sungai.nama}</h3>
-                <p>${sungai.lokasi}</p>
-                <p style="color: red; font-weight: bold; margin-top: 5px;">Tingkat Kotor: ${sungai.kotor}</p>
+                <p>Klik untuk detail</p>
             </div>
         `;
     });
 }
 
-// --- FUNGSI RENDER DATA PAHLAWAN ---
 function renderPahlawan() {
     const grid = document.getElementById('grid-pahlawan');
     grid.innerHTML = '';
@@ -172,13 +191,13 @@ function renderPahlawan() {
         grid.innerHTML += `
             <div class="card" onclick="showDetail('pahlawan', ${index})">
                 <h3>${pahlawan.nama}</h3>
-                <p>Klik untuk melihat kontribusi</p>
+                <p>Klik untuk detail pahlawan</p>
             </div>
         `;
     });
 }
 
-// --- FUNGSI NAVIGASI & MODAL ---
+// --- FUNGSI NAVIGASI ---
 function showSection(sectionId, btnElement) {
     document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
     document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
@@ -187,12 +206,71 @@ function showSection(sectionId, btnElement) {
     btnElement.classList.add('active');
 }
 
+// --- FUNGSI MODAL ---
+function closeModal() {
+    document.getElementById('detailModal').style.display = 'none';
+}
+
+function showDetail(type, index) {
+    const modal = document.getElementById('detailModal');
+    const content = document.getElementById('detailContent');
+    
+    if(type === 'sungai') {
+        const data = dataSungai[index];
+        // Memakai warna soft-yellow (#fcf6bd), dark-green (#40916c), soft-green (#d8f3dc) untuk modal context
+        content.innerHTML = `
+            <div style="background-color: #d8f3dc; padding: 20px; border-radius: 10px; color: #2d6a4f;">
+                <h2 style="color: #40916c; margin-bottom: 10px;">${data.nama} 🌱</h2>
+                <img src="${data.img}" alt="Foto ${data.nama}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <p><strong>Lokasi:</strong> ${data.lokasi}</p>
+                <p><strong>Kondisi Pencemaran:</strong> ${data.deskripsi}</p>
+                <div style="background-color: #fcf6bd; padding: 10px; border-radius: 5px; margin-top: 15px; border: 1px solid #e6ccb2;">
+                    <p style="margin: 0;"><strong>Estimasi Tingkat Kotor:</strong> <span style="color:red; font-weight:bold; font-size: 1.2em;">${data.kotor}</span></p>
+                </div>
+                <p style="margin-top: 10px;"><strong>Durasi Pencemaran:</strong> ${data.durasi}</p>
+            </div>
+        `;
+    } else if(type === 'pahlawan') {
+        const data = dataPahlawan[index];
+        content.innerHTML = `
+            <div style="background-color: #caf0f8; padding: 20px; border-radius: 10px; color: #2d6a4f;">
+                <h2 style="color: #40916c; margin-bottom: 15px;">${data.nama} 🦸‍♂️🌱</h2>
+                <p><strong>Deskripsi & Kontribusi:</strong><br> ${data.desc}</p>
+                <br>
+                <p><strong>Sosial Media:</strong><br> ${data.sosmed}</p>
+            </div>
+        `;
+    }
+    modal.style.display = 'flex';
+}
+
+// --- FUNGSI FORM ---
+function handleAuth(e, action) {
+    e.preventDefault();
+    alert(`Berhasil ${action}! Selamat datang di AGANGAI.`);
+    closeModal();
+}
+
+function submitPengaduan(e) {
+    e.preventDefault();
+    alert("Terima kasih! Laporan pengaduan sungai kotor telah kami catat dan akan segera ditinjau.");
+    e.target.reset();
+}
+
+function submitDibersihkan(e) {
+    e.preventDefault();
+    // Ucapan selamat yang heboh dan apresiatif
+    alert("🎉 SELAMAT! 🎉\n\nTerima kasih banyak atas usaha luar biasamu merawat sungai kita! Langkah kecilmu ini sangat berarti untuk bumi. Tetap semangat jadi Pahlawan Sungai!");
+    e.target.reset();
+}
+
+// --- FUNGSI LOGIN/DAFTAR MODAL BARU ---
 function openAuthModal() {
     document.getElementById('authModal').style.display = 'flex';
 }
 
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
 }
 
 function switchAuth(type) {
@@ -206,52 +284,6 @@ function switchAuth(type) {
         document.querySelectorAll('.auth-tab')[1].classList.add('active');
         document.getElementById('registerForm').classList.add('active');
     }
-}
-
-// --- FUNGSI SHOW DETAIL MODAL ---
-function showDetail(type, index) {
-    const modal = document.getElementById('detailModal');
-    const content = document.getElementById('detailContent');
-    
-    if(type === 'sungai') {
-        const data = dataSungai[index];
-        content.innerHTML = `
-            <h2>${data.nama}</h2>
-            <img src="${data.img}" alt="Foto ${data.nama}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-            <p><strong>Lokasi:</strong> ${data.lokasi}</p>
-            <p><strong>Kondisi Pencemaran:</strong> ${data.deskripsi}</p>
-            <p><strong>Persentase Kotor:</strong> <span style="color:red; font-weight:bold; font-size: 1.2em;">${data.kotor}</span></p>
-        `;
-    } else if(type === 'pahlawan') {
-        const data = dataPahlawan[index];
-        content.innerHTML = `
-            <h2>${data.nama}</h2>
-            <br>
-            <p><strong>Deskripsi & Kontribusi:</strong><br> ${data.desc}</p>
-            <br>
-            <p><strong>Sosial Media:</strong><br> ${data.sosmed}</p>
-        `;
-    }
-    modal.style.display = 'flex';
-}
-
-// --- FUNGSI FORM (Pengaduan, dll.) ---
-function handleAuth(e, action) {
-    e.preventDefault();
-    alert(`Berhasil ${action}! Selamat datang di AGANGAI.`);
-    closeModal('authModal');
-}
-
-function submitPengaduan(e) {
-    e.preventDefault();
-    alert("Terima kasih! Laporan pengaduan sungai kotor telah kami catat dan akan segera ditinjau.");
-    e.target.reset();
-}
-
-function submitDibersihkan(e) {
-    e.preventDefault();
-    alert("🎉 SELAMAT! 🎉\n\nTerima kasih banyak atas usaha luar biasamu merawat sungai kita! Langkah kecilmu ini sangat berarti untuk bumi. Tetap semangat jadi Pahlawan Sungai!");
-    e.target.reset();
 }
 
 // Inisialisasi awal saat halaman dimuat
